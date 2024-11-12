@@ -4,6 +4,9 @@ Please give this repo a star if it helps! :)
 
 If you can't upload to GitHub successfully, you may need to upload the file to dropbox and download it. Replace the contents of build.yml with this. Copy the link to your dropbox file. Replace YOURLINKHERE with it. MAKE SURE TO CHANGE `dl=0` in the URL to `dl=1`.
 
+Also, if you don't want the repository building on every push, you can configure it with `on: [workflow_dispatch]` instead of `on: [push]`.
+
+
 ```yaml
 name: "Build iOS app"
 
