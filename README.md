@@ -6,6 +6,9 @@ If you can't upload to GitHub successfully, you may need to upload the file to d
 
 Also, if you don't want the repository building on every push, you can configure it with `on: [workflow_dispatch]` instead of `on: [push]`.
 
+If you're tired of this taking too long, try https://github.com/mak448a/ipa-tools
+
+
 
 ```yaml
 name: "Build iOS app"
