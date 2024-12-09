@@ -69,9 +69,6 @@ def create_new_ipa() -> str:
     return link
 
 
-print(
-    "WARNING!!!!!!!\nMAKE SURE YOU ARE RUNNING THIS IN A WORKING DIRECTORY THAT EITHER THE SCRIPT DIRECTORY, OR AN EMPTY DIRECTORY. THANK YOU!!! NOTE TO SELF: REWRITE SO THAT THIS WARNING DOESN'T HAVE TO BE HERE."
-)
 mode = inquirer.select(
     message="Pick a mode",
     choices=["Edit IPA", "Create new IPA"],
