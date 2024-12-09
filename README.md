@@ -3,6 +3,7 @@
 Tools to develop apps for iOS without a Mac with Godot Engine!
 
 Ever wanted to stop hopping between your Mac and Windows/Linux PCs when developing an iOS Project? This is the project for you!
+See [my blog post](https://mak448a.github.io/blog/compile-ios-godot-without-mac) for more info!
 
 Features:
 - Editor to update IPA without rebuilding!
@@ -16,7 +17,7 @@ Features:
 - gh CLI
 - git
 
-## Usage
+## Installation and Configuration
 1. [Download Python](https://python.org). Make sure to check the box that says "Add to PATH" if you're on Windows.
 2. Go to the path where you downloaded this repository. 
    - For Windows, go to the folder and press on the address bar. Then, type in cmd and press enter.
@@ -51,6 +52,21 @@ You can name your app whatever you want, as long as it's unique.
 python main.py
 ```
 7. (Optional) If you want to skip writing in the questions every time you want to build, add the answeres to the `.env` file. Make sure to check `example.env` for how to do this!
+
+## Usage
+When you launch the CLI with `python main.py`, it'll prompt you to choose whether you want to build or edit an IPA. For the first time, choose build IPA.
+
+### Mode instructions
+**Build IPA:**
+- Follow the prompts.
+
+**Edit IPA:**
+- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`.
+
+### But what's the difference?
+- Build IPA is for the first time you run the CLI. It makes a fresh build of your project.
+- Edit IPA is for afterwards. You can export with the PCK only, and it'll replace some of the files in the IPA. If you didn't change any settings in `project.godot`, it should work perfectly! If you did though, rebuild the IPA.
+
 
 ## Troubleshooting
 If you get an `AuthError('expired_access_token', None))`, that means that you need to get a new OAuth token from Dropbox.
