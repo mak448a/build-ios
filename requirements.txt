@@ -1,0 +1,3 @@
+inquirerpy~=0.3.4
+dropbox~=12.0.2
+python-dotenv~=1.0.1
