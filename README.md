@@ -50,6 +50,7 @@ You can name your app whatever you want, as long as it's unique.
 ```shell
 python main.py
 ```
+7. (Optional) If you want to skip writing in the questions every time you want to build, add the answeres to the `.env` file. Make sure to check `example.env` for how to do this!
 
 ## Troubleshooting
 If you get an `AuthError('expired_access_token', None))`, that means that you need to get a new OAuth token from Dropbox.
