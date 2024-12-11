@@ -77,5 +77,6 @@ If you get an `AuthError('expired_access_token', None))`, that means that you ne
 
 
 ## Notes and credits
+- Edit IPA function inspired by [this article by RandomMomentania](https://randommomentania.com/2022/01/godot-easy-ios-app-testing/)
 - Started work on this project ~11/2024.
 - Inspired by [u/_atreat](https://www.reddit.com/r/godot/comments/vlwrj0/comment/idxn5z8/) and [u/Host127001](https://www.reddit.com/r/godot/comments/s0pj02/comment/hs3rjl3/) who suggested building with Github actions.
