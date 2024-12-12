@@ -14,7 +14,7 @@ Features:
 > This is in very early stages. Please report bugs and be cautious!
 
 ## Requirements
-- gh CLI
+- gh CLI (version 2.46.0 tested, other versions untested)
 - git
 
 ## Installation and Configuration
