@@ -26,6 +26,8 @@ def _check_repo_exists(owner: str, repo_name: str) -> bool:
         )
         if result.stdout:
             return True
+        else:
+            return False
     except subprocess.CalledProcessError:
         return False
 
