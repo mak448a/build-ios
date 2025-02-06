@@ -14,8 +14,9 @@ Features:
 > This is in very early stages. Please report bugs and be cautious!
 
 ## Requirements
-- gh CLI (version 2.63.2 tested, other versions untested)
+- GitHub CLI (2.63.2 tested, other versions untested.)
 - git
+- Python (3.12+)
 
 ## Installation and Configuration
 1. [Download Python](https://python.org). Make sure to check the box that says "Add to PATH" if you're on Windows.
