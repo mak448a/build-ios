@@ -11,7 +11,7 @@ Features:
 
 
 > [!WARNING]
-> This is in very early stages. Please report bugs and be cautious!
+> I try my best to write code that works, but I may have accidentally included bugs. Please report any that you find and be cautious!
 
 ## Requirements
 - GitHub CLI (2.63.2 tested, other versions untested.)
@@ -19,11 +19,11 @@ Features:
 - Python (3.12+)
 
 ## Installation and Configuration
-1. [Download Python](https://python.org). Make sure to check the box that says "Add to PATH" if you're on Windows.
-2. Go to the path where you downloaded this repository. 
+1. First, download [Python](Python.org/downloads), Git, and GitHub. Make sure to check the box that says "Add to PATH" when installing Python if you're on Windows. Run this command if you want to install Git and GitHub on Windows: `winget install Git.Git GitHub.cli`
+3. Go to the path where you downloaded this repository. 
    - For Windows, go to the folder and press on the address bar. Then, type in cmd and press enter.
    - For Linux, type `cd` and then the path you want in your terminal.
-3. Install dependencies with the commands below. Choose the one for your operating system.
+4. Install dependencies with the commands below. Choose the one for your operating system.
 
 **Windows**
 ```shell
