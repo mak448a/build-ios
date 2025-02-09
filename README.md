@@ -6,8 +6,8 @@ Ever wanted to stop hopping between your Mac and Windows/Linux PCs when developi
 See [my blog post](https://mak448a.github.io/blog/compile-ios-godot-without-mac) for more info!
 
 Features:
-- Editor to update IPA without rebuilding!
-- Builder that pushes to GitHub actions for building!
+- Editor to update the .ipa file of your game without rebuilding!
+- Uploader that pushes your game to GitHub actions for building!
 
 
 > [!WARNING]
