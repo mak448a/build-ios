@@ -35,7 +35,7 @@ def _check_repo_exists(owner: str, repo_name: str) -> bool:
 def _push_changes_to_repo() -> None:
     print("Pushing changes!")
     os.system(
-        f"cd {REPO_NAME} && git add . && git commit -m 'Updated yaml from cli' && git push"
+        f"cd {REPO_NAME} && git add . && git commit -m \"Updated yaml from cli\" && git push"
     )
 
 
