@@ -66,7 +66,7 @@ When you launch the CLI with `python main.py`, it'll prompt you to choose whethe
 
 ### But what's the difference?
 - Build IPA is for the first time you run the CLI. It makes a fresh build of your project.
-- Edit IPA is for afterwards. You can export with the PCK only, and it'll replace some of the files in the IPA. If you didn't change any settings in `project.godot`, it should work perfectly! If you did though, rebuild the IPA.
+- Edit IPA is for after the first build. After exporting the PCK, use this option to replace the PCK in the IPA. If you changed any settings in `project.godot`, rebuild the IPA.
 
 
 ## Troubleshooting
