@@ -1,4 +1,4 @@
-# Build a Godot Project without Mac!
+# Build a Godot Project for iOS without Mac!
 
 Tools to develop apps for iOS without a Mac with Godot Engine!
 
