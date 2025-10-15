@@ -57,6 +57,8 @@ python main.py
 ## Usage
 When you launch the CLI with `python main.py`, it'll prompt you to choose whether you want to build or edit an IPA. For the first time, choose build IPA.
 
+If you want to save your answers, you can edit `.env` with your DropBox token, GitHub username, repository name, and output file.
+
 ### Mode instructions
 **Build IPA:**
 - Follow the prompts.
