@@ -73,7 +73,9 @@ If you want to save your answers, you can edit `.env` with your DropBox token, G
 
 ## Troubleshooting
 If you get an `AuthError('expired_access_token', None))`, that means that you need to get a new OAuth token from Dropbox.
-If you have any other problems, feel free to open an issue/discussion in this repository.
+If you still have problems, open an issue in this repository.
+While you're waiting, try following the [original instructions](https://github.com/mak448a/build-ios/tree/main/original_repo).
+
 
 ## Privacy Policy
 - I don't collect any data from this project.
