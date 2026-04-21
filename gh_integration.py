@@ -2,6 +2,7 @@ from InquirerPy import inquirer
 from dotenv import load_dotenv
 import subprocess
 import shutil
+import stat
 import os
 
 
@@ -35,7 +36,7 @@ def _check_repo_exists(owner: str, repo_name: str) -> bool:
 def _push_changes_to_repo() -> None:
     print("Pushing changes!")
     os.system(
-        f"cd {REPO_NAME} && git add . && git commit -m \"Updated yaml from cli\" && git push"
+        f"cd {REPO_NAME} && git branch -M main && git add . && git commit -m \"Updated yaml from cli\" && git push -u origin main"
     )
 
 
@@ -55,6 +56,11 @@ def _create_yml(link: str, project_name: str) -> None:
         file.write(reading)
 
 
+def change_permission(func, path, _):
+                os.chmod(path, stat.S_IWRITE)
+                func(path)
+
+
 def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_name: str):
     if _check_repo_exists(USERNAME, REPO_NAME):
         print("Repo exists! Clone it!")
@@ -69,7 +75,8 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
                 quit()
 
             print(f"Deleting {REPO_NAME} folder and cloning {USERNAME}/{REPO_NAME}!")
-            shutil.rmtree(REPO_NAME)
+            
+            shutil.rmtree(REPO_NAME, onexc=change_permission)
 
         os.system(f"git clone https://github.com/{USERNAME}/{REPO_NAME}")
         print("Done cloning!")
@@ -92,7 +99,7 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
     _create_yml(xcproj_link, project_name)
     _push_changes_to_repo()
 
-    inquirer.confirm("Build the repo?", default=True).execute()
+    inquirer.confirm("Building the repo! Press CTRL+C to cancel", default=True).execute()
     os.system(f'gh workflow run "Build iOS app" --repo {USERNAME}/{REPO_NAME}')
     print(
         f"Check out your build at https://github.com/{USERNAME}/{REPO_NAME}/actions and then click the topmost entry. Then scroll down to artifacts, and click the download icon next to your app."

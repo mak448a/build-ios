@@ -93,7 +93,7 @@ elif mode == "Create new IPA":
     if IPA:
         create_and_clone_and_change_and_push_and_build(link, IPA[0:-4])
     else:
-        proj_name = inquirer.text("What's the name of the project?").execute()
+        proj_name = inquirer.text("What's the name of the ipa file you exported in Godot Engine?").execute()
         create_and_clone_and_change_and_push_and_build(link, proj_name)
 else:
     print("Invalid choice!")
