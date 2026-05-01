@@ -52,7 +52,7 @@ You can name your app whatever you want, as long as it's unique.
 ```shell
 python main.py
 ```
-7. (Optional) If you want to skip writing in the questions every time you want to build, add the answeres to the `.env` file. Make sure to check `example.env` for how to do this!
+7. (Optional) If you want to skip writing in the questions every time you want to build, add the answers to the `.env` file. Make sure to check `example.env` for how to do this!
 
 ## Usage
 When you launch the CLI with `python main.py`, it'll prompt you to choose whether you want to build or edit an IPA. For the first time, choose build IPA.
