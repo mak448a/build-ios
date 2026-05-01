@@ -19,7 +19,7 @@ Features:
 - Python (3.12+)
 
 ## Installation and Configuration
-1. First, download [Python](Python.org/downloads), Git, and GitHub. Make sure to check the box that says "Add to PATH" when installing Python if you're on Windows. Run this command if you want to install Git and GitHub on Windows: `winget install Git.Git GitHub.cli`
+1. First, download [Python](Python.org/downloads), Git, and GitHub. Make sure to check the box that says "Add to PATH" when installing Python if you're on Windows. Run this command if you want to install Git and GitHub on Windows: `winget install Git.Git GitHub.cli`, then log into GitHub with `gh auth login`.
 3. Go to the path where you downloaded this repository. 
    - For Windows, go to the folder and press on the address bar. Then, type in cmd and press enter.
    - For Linux, type `cd` and then the path you want in your terminal.
