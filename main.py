@@ -29,9 +29,10 @@ def edit_ipa() -> None:
             break
         else:
             print(
-                f"Invalid files! Either '{
-                    ipa_path[0:-4]}.pck' and/or {ipa_path} doesn't/don't exist!"
-                f"{"\nYour IPA entry in '.env' is faulty!" if IPA and not invalid else ""}"
+                f"Invalid files! Either '{ipa_path[0:-4]}.pck' and/or {
+                    ipa_path
+                } doesn't/don't exist!"
+                f"{"\nYour IPA entry in '.env' is faulty!" if IPA and not invalid else ''}"
             )
             invalid = True
 
@@ -93,7 +94,9 @@ elif mode == "Create new IPA":
     if IPA:
         create_and_clone_and_change_and_push_and_build(link, IPA[0:-4])
     else:
-        proj_name = inquirer.text("What's the name of the ipa file you exported in Godot Engine?").execute()
+        proj_name = inquirer.text(
+            "What's the name of the ipa file you exported in Godot Engine?"
+        ).execute()
         create_and_clone_and_change_and_push_and_build(link, proj_name)
 else:
     print("Invalid choice!")

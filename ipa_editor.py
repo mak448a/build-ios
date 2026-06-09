@@ -13,9 +13,10 @@ def replace_pck(ipa_path: str) -> None:
     replacement_path = f"Payload/{ipa_path[0:-4]}.app/{ipa_path[0:-4]}.pck"
     pck_file = f"{ipa_path[0:-4]}.pck"
 
-    with zipfile.ZipFile(ipa_path) as ipa, zipfile.ZipFile(
-        "temp_ipa.ipa", "w"
-    ) as tmp_ipa:
+    with (
+        zipfile.ZipFile(ipa_path) as ipa,
+        zipfile.ZipFile("temp_ipa.ipa", "w") as tmp_ipa,
+    ):
         for item in ipa.infolist():
             if item.filename != replacement_path:
                 tmp_ipa.writestr(item, ipa.read(item.filename))
