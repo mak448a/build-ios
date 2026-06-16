@@ -64,7 +64,7 @@ If you want to save your answers, you can edit `.env` with your DropBox token, G
 - Follow the prompts.
 
 **Edit IPA:**
-- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`.
+- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`. Put it in the folder where this repo is stored.
 
 ### But what's the difference?
 - Build IPA is for the first time you run the CLI. It makes a fresh build of your project.
