@@ -74,7 +74,9 @@ if __name__ == "__main__":
         print("Python is not 3.x!")
         sys.exit(1)
     elif int(version[1]) >= 12:
-        print("Python version is above 3.12, continuing!")
+        print("Python version 3.12 or above, continuing!")
+    else:
+        print("Python version unsupported! Make sure to use Python 3.12 or above!")
 
     mode = inquirer.select(
         message="Pick a mode",
