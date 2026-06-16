@@ -46,9 +46,9 @@ You can name your app whatever you want, as long as it's unique.
 ![Screenshot of going to permissions tab](tutorial/4.png)
 ![Screenshot of permissions](tutorial/5.png)
 ![Screenshot of submit button](tutorial/6.png)
-5. Add `TOKEN=YOURKEYHERE` (replace the token with your token) in the file `.env`.
+5. Create the file `.env` and add `TOKEN=YOURKEYHERE` (replace the token with your token) to it.
 
-6. Run the Python script!
+7. Run the Python script!
 ```shell
 python main.py
 ```
@@ -64,7 +64,7 @@ If you want to save your answers, you can edit `.env` with your DropBox token, G
 - Follow the prompts.
 
 **Edit IPA:**
-- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`.
+- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`. Put it in the folder where this repo is stored.
 
 ### But what's the difference?
 - Build IPA is for the first time you run the CLI. It makes a fresh build of your project.
