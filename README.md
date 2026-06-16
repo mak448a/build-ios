@@ -64,7 +64,7 @@ If you want to save your answers, you can edit `.env` with your DropBox token, G
 - Follow the prompts.
 
 **Edit IPA:**
-- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`. Put it in the folder where this repo is stored.
+- When exporting your Godot Project, choose "Export PCK/ZIP" and save it as `yourproject.pck`. Put it in the folder where you downloaded this program.
 
 ### But what's the difference?
 - Build IPA is for the first time you run the CLI. It makes a fresh build of your project.
@@ -72,7 +72,9 @@ If you want to save your answers, you can edit `.env` with your DropBox token, G
 
 
 ## Troubleshooting
-If you get an `AuthError('expired_access_token', None))`, that means that you need to get a new OAuth token from Dropbox.
+### AuthError('expired_access_token', None)
+Your token is probably expired. Get a new OAuth token from Dropbox.
+
 If you still have problems, open an issue in this repository.
 While you're waiting, try following the [original instructions](https://github.com/mak448a/build-ios/tree/main/original_repo).
 
