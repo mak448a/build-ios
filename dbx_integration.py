@@ -1,5 +1,6 @@
 import dropbox
 from dotenv import load_dotenv
+import sys
 import os
 
 
@@ -7,6 +8,10 @@ load_dotenv()
 
 # Your Dropbox API access token
 ACCESS_TOKEN = os.getenv("TOKEN")
+
+if not ACCESS_TOKEN:
+    print("You forgot to add your Dropbox credentials to the `.env` file! Add it and try again!")
+    sys.exit(1)
 
 # Initialize the Dropbox client
 dbx = dropbox.Dropbox(ACCESS_TOKEN)

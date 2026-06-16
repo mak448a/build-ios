@@ -7,15 +7,13 @@ import os
 
 
 load_dotenv()
-USERNAME = os.getenv("USERNAME")
+GH_USERNAME = os.getenv("GH_USERNAME")
 REPO_NAME = os.getenv("REPO_NAME")
 
 
-if not USERNAME or not REPO_NAME:
-    USERNAME = inquirer.text("What's your GitHub username?").execute()
-    REPO_NAME = inquirer.text(
-        "What's the name of the repo that you want to store your project in?"
-    ).execute()
+if not GH_USERNAME or not REPO_NAME:
+    GH_USERNAME = inquirer.text("What's your GitHub username?").execute()
+    REPO_NAME = inquirer.text("What's the name of the repo that you want to store your project in?").execute()
 
 
 def _check_repo_exists(owner: str, repo_name: str) -> bool:
@@ -45,9 +43,7 @@ def _create_yml(link: str, project_name: str) -> None:
 
     with open("action.yml") as f:
         reading = f.read()
-    reading = reading.replace("YOURLINKHERE", link).replace(
-        "Example-Project", project_name
-    )
+    reading = reading.replace("YOURLINKHERE", link).replace("Example-Project", project_name)
 
     print("Creating yaml file...")
     if not os.path.exists(f"{REPO_NAME}/.github/workflows/"):
@@ -62,7 +58,7 @@ def change_permission(func, path, _):
 
 
 def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_name: str):
-    if _check_repo_exists(USERNAME, REPO_NAME):
+    if _check_repo_exists(GH_USERNAME, REPO_NAME):
         print("Repo exists! Clone it!")
 
         if os.path.exists(REPO_NAME):
@@ -74,24 +70,22 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
                 print("Aborted.")
                 quit()
 
-            print(f"Deleting {REPO_NAME} folder and cloning {USERNAME}/{REPO_NAME}!")
+            print(f"Deleting {REPO_NAME} folder and cloning {GH_USERNAME}/{REPO_NAME}!")
 
             shutil.rmtree(REPO_NAME, onexc=change_permission)
 
-        os.system(f"git clone https://github.com/{USERNAME}/{REPO_NAME}")
+        os.system(f"git clone https://github.com/{GH_USERNAME}/{REPO_NAME}")
         print("Done cloning!")
     else:
         print("Creating repository...")
 
         if os.path.exists(REPO_NAME):
-            overwrite = inquirer.confirm(
-                f"Do you want to overwrite the current directory named {REPO_NAME}?"
-            ).execute()
+            overwrite = inquirer.confirm(f"Do you want to overwrite the current directory named {REPO_NAME}?").execute()
             if not overwrite:
                 print("Aborted.")
                 quit()
 
-            print(f"Deleting {REPO_NAME} folder and creating {USERNAME}/{REPO_NAME}!")
+            print(f"Deleting {REPO_NAME} folder and creating {GH_USERNAME}/{REPO_NAME}!")
             shutil.rmtree(REPO_NAME)
 
         subprocess.run(["gh", "repo", "create", REPO_NAME, "--private", "--clone"])
@@ -99,12 +93,10 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
     _create_yml(xcproj_link, project_name)
     _push_changes_to_repo()
 
-    inquirer.confirm(
-        "Building the repo! Press CTRL+C to cancel", default=True
-    ).execute()
-    os.system(f'gh workflow run "Build iOS app" --repo {USERNAME}/{REPO_NAME}')
+    inquirer.confirm("Building the repo! Press CTRL+C to cancel", default=True).execute()
+    os.system(f'gh workflow run "Build iOS app" --repo {GH_USERNAME}/{REPO_NAME}')
     print(
-        f"Check out your build at https://github.com/{USERNAME}/{REPO_NAME}/actions and then click the topmost entry. Then scroll down to artifacts, and click the download icon next to your app."
+        f"Check out your build at https://github.com/{GH_USERNAME}/{REPO_NAME}/actions and then click the topmost entry. Then scroll down to artifacts, and click the download icon next to your app."
     )
 
 

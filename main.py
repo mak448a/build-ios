@@ -7,6 +7,8 @@ from gh_integration import create_and_clone_and_change_and_push_and_build
 
 import shutil
 import os
+import platform
+import sys
 import dotenv
 import uuid
 
@@ -29,9 +31,7 @@ def edit_ipa() -> None:
             break
         else:
             print(
-                f"Invalid files! Either '{ipa_path[0:-4]}.pck' and/or {
-                    ipa_path
-                } doesn't/don't exist!"
+                f"Invalid files! Either '{ipa_path[0:-4]}.pck' and/or {ipa_path} doesn't/don't exist!"
                 f"{"\nYour IPA entry in '.env' is faulty!" if IPA and not invalid else ''}"
             )
             invalid = True
@@ -58,9 +58,7 @@ def create_new_ipa() -> str:
             print("Invalid folder.")
             continue
         except dropbox.exceptions.ApiError:
-            print(
-                "There was an API error. Perhaps try deleting the previous upload from dropbox?"
-            )
+            print("There was an API error. Perhaps try deleting the previous upload from dropbox?")
             quit()
 
     # Cleanup
@@ -70,33 +68,38 @@ def create_new_ipa() -> str:
     return link
 
 
-mode = inquirer.select(
-    message="Pick a mode",
-    choices=["Edit IPA", "Create new IPA"],
-).execute()
+if __name__ == "__main__":
+    version = platform.python_version().split(".")
+    if version[0] != 3:
+        print("Python is not 3.x!")
+        sys.exit(1)
+    elif int(version[1]) >= 12:
+        print("Python version is above 3.12, continuing!")
 
-
-if mode == "Edit IPA":
-    edit_ipa()
-    quit()
-elif mode == "Create new IPA":
-    link = create_new_ipa()
-
-    confirmation = inquirer.confirm(
-        "Do you want to continue to uploading to GitHub? If no, quit.", default=True
+    mode = inquirer.select(
+        message="Pick a mode",
+        choices=["Edit IPA", "Create new IPA"],
     ).execute()
-    if not confirmation:
-        print("Quitting! You can manually build it later on your GitHub repo.")
+
+    if mode == "Edit IPA":
+        edit_ipa()
         quit()
+    elif mode == "Create new IPA":
+        link = create_new_ipa()
 
-    print("Proceeding to the GitHub step!")
-
-    if IPA:
-        create_and_clone_and_change_and_push_and_build(link, IPA[0:-4])
-    else:
-        proj_name = inquirer.text(
-            "What's the name of the ipa file you exported in Godot Engine?"
+        confirmation = inquirer.confirm(
+            "Do you want to continue to uploading to GitHub? If no, quit.", default=True
         ).execute()
-        create_and_clone_and_change_and_push_and_build(link, proj_name)
-else:
-    print("Invalid choice!")
+        if not confirmation:
+            print("Quitting! You can manually build it later on your GitHub repo.")
+            quit()
+
+        print("Proceeding to the GitHub step!")
+
+        if IPA:
+            create_and_clone_and_change_and_push_and_build(link, IPA[0:-4])
+        else:
+            proj_name = inquirer.text("What's the name of the ipa file you exported in Godot Engine?").execute()
+            create_and_clone_and_change_and_push_and_build(link, proj_name)
+    else:
+        print("Invalid choice!")
