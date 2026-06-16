@@ -46,9 +46,9 @@ You can name your app whatever you want, as long as it's unique.
 ![Screenshot of going to permissions tab](tutorial/4.png)
 ![Screenshot of permissions](tutorial/5.png)
 ![Screenshot of submit button](tutorial/6.png)
-5. Add `TOKEN=YOURKEYHERE` (replace the token with your token) in the file `.env`.
+5. Create the file `.env` and add `TOKEN=YOURKEYHERE` (replace the token with your token) to it.
 
-6. Run the Python script!
+7. Run the Python script!
 ```shell
 python main.py
 ```
