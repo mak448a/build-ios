@@ -77,6 +77,8 @@ Your token is probably expired. Get a new OAuth token from Dropbox.
 
 If you still have problems, check [the other troubleshooting thread](https://github.com/mak448a/build-ios/issues/13) or open an issue in this repository!
 While you're waiting, try following the [original instructions](https://github.com/mak448a/build-ios/tree/main/original_repo).
+### Invalid files
+Did you add quotation marks around the file path?
 
 
 ## Privacy Policy
