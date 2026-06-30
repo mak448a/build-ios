@@ -1,9 +1,7 @@
 import inquirer as inq
 from dropbox import exceptions
 
-from typing import cast
-
-from dbx_integration import upload_file, dropbox
+from dbx_integration import upload_file
 from ipa_editor import replace_pck
 from gh_integration import create_and_clone_and_change_and_push_and_build
 
