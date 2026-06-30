@@ -70,7 +70,7 @@ def create_new_ipa() -> str:
 
 if __name__ == "__main__":
     version = platform.python_version().split(".")
-    if version[0] != 3:
+    if version[0] != "3":
         print("Python is not 3.x!")
         sys.exit(1)
     elif int(version[1]) >= 12:
