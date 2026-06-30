@@ -30,7 +30,7 @@ def upload_file(file_path, dropbox_path):
     # Generate a shared link
     shared_link_metadata = dbx.sharing_create_shared_link_with_settings(dropbox_path)
 
-    return shared_link_metadata.url
+    return shared_link_metadata.url # type: ignore
 
 
 if __name__ == "__main__":

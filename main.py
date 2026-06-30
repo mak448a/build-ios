@@ -1,5 +1,7 @@
-from InquirerPy import inquirer
-import dropbox.exceptions
+import inquirer as inq
+from dropbox import exceptions
+
+from typing import cast
 
 from dbx_integration import upload_file, dropbox
 from ipa_editor import replace_pck
@@ -22,7 +24,21 @@ def edit_ipa() -> None:
 
     while True:
         if not IPA or invalid:
-            ipa_path = inquirer.text("Enter path to IPA file to edit:").execute()
+            ipa_path = (
+                inq.prompt(
+                    [
+                        inq.Path(
+                            "path",
+                            message="Enter path to IPA file to edit (.ipa must be in same directory as .pck)",
+                            path_type=inq.Path.DIRECTORY,
+                        )
+                    ],
+                    raise_keyboard_interrupt=True,
+                )
+                .get("path")  # type: ignore
+                .strip("'")  # type: ignore
+            )  # type: ignore
+            assert ipa_path is not None
         else:
             ipa_path = IPA
 
@@ -45,7 +61,20 @@ def create_new_ipa() -> str:
     print("Make sure you have enough storage on Dropbox! Otherwise, exit now.")
 
     while True:
-        path = inquirer.text(message="Enter path to folder of XCodeProject:").execute()
+        path = (
+            inq.prompt(
+                [
+                    inq.Path(
+                        "path",
+                        message="Enter path to folder of XCodeProject",
+                        path_type=inq.Path.DIRECTORY,
+                    )
+                ],
+                raise_keyboard_interrupt=True,
+            ).get("path")  # type: ignore
+        ).strip("'")  # type: ignore
+        assert path is not None
+
         try:
             print("Zipping your project...")
             shutil.make_archive("tempxcodeproject", "zip", path)
@@ -57,7 +86,7 @@ def create_new_ipa() -> str:
         except FileNotFoundError:
             print("Invalid folder.")
             continue
-        except dropbox.exceptions.ApiError:
+        except exceptions.ApiError:
             print("There was an API error. Perhaps try deleting the previous upload from dropbox?")
             quit()
 
@@ -70,7 +99,8 @@ def create_new_ipa() -> str:
 
 if __name__ == "__main__":
     version = platform.python_version().split(".")
-    if version[0] != 3:
+
+    if version[0] != "3":
         print("Python is not 3.x!")
         sys.exit(1)
     elif int(version[1]) >= 12:
@@ -78,10 +108,15 @@ if __name__ == "__main__":
     else:
         print("Python version unsupported! Make sure to use Python 3.12 or above!")
 
-    mode = inquirer.select(
-        message="Pick a mode",
-        choices=["Edit IPA", "Create new IPA"],
-    ).execute()
+    mode = inq.prompt(
+        [
+            inq.List(
+                "mode",
+                message="Pick a mode",
+                choices=["Edit IPA", "Create new IPA"],
+            ),
+        ]
+    ).get("mode")  # type: ignore
 
     if mode == "Edit IPA":
         edit_ipa()
@@ -89,11 +124,11 @@ if __name__ == "__main__":
     elif mode == "Create new IPA":
         link = create_new_ipa()
 
-        confirmation = inquirer.confirm(
-            "Do you want to continue to uploading to GitHub? If no, quit.", default=True
-        ).execute()
+        confirmation = inq.prompt(
+            [inq.Confirm("ans", message="Do you want to continue to uploading to GitHub? If no, quit")]
+        ).get("ans")  # type: ignore
         if not confirmation:
-            print("Quitting! You can manually build it later on your GitHub repo.")
+            print("Quitting! You can manually build iirmt later on your GitHub repo.")
             quit()
 
         print("Proceeding to the GitHub step!")
@@ -101,7 +136,16 @@ if __name__ == "__main__":
         if IPA:
             create_and_clone_and_change_and_push_and_build(link, IPA[0:-4])
         else:
-            proj_name = inquirer.text("What's the name of the ipa file you exported in Godot Engine?").execute()
+            proj_name = inq.prompt(
+                [
+                    inq.Text(
+                        "proj",
+                        message="What's the name of the ipa file you exported in Godot Engine?",
+                    )
+                ]
+            ).get("proj")  # type: ignore
+            assert proj_name is not None
+
             create_and_clone_and_change_and_push_and_build(link, proj_name)
     else:
         print("Invalid choice!")
