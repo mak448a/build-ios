@@ -116,7 +116,7 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
     _push_changes_to_repo()
 
     confirm = inq.prompt(
-        [inq.Confirm("ans", message=f"Building the repo! Continue?", default=True)], raise_keyboard_interrupt=True
+        [inq.Confirm("ans", message="Building the repo! Continue?", default=True)], raise_keyboard_interrupt=True
     ).get("ans")  # type: ignore
 
     if not confirm:
