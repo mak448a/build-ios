@@ -3,6 +3,7 @@ import subprocess
 import shutil
 import stat
 import os
+import sys
 import inquirer as inq
 
 
@@ -114,9 +115,12 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
     _create_yml(xcproj_link, project_name)
     _push_changes_to_repo()
 
-    inq.prompt(
-        [inq.Confirm("ans", message=f"Building the repo! Press CTRL+C to cancel")], raise_keyboard_interrupt=True
+    confirm = inq.prompt(
+        [inq.Confirm("ans", message=f"Building the repo! Continue?", default=True)], raise_keyboard_interrupt=True
     ).get("ans")  # type: ignore
+
+    if not confirm:
+        sys.exit()
 
     os.system(f'gh workflow run "Build iOS app" --repo {GH_USERNAME}/{REPO_NAME}')
     print(
