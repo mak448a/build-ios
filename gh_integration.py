@@ -1,9 +1,9 @@
-from InquirerPy import inquirer
 from dotenv import load_dotenv
 import subprocess
 import shutil
 import stat
 import os
+import inquirer as inq
 
 
 load_dotenv()
@@ -12,8 +12,22 @@ REPO_NAME = os.getenv("REPO_NAME")
 
 
 if not GH_USERNAME or not REPO_NAME:
-    GH_USERNAME = inquirer.text("What's your GitHub username?").execute()
-    REPO_NAME = inquirer.text("What's the name of the repo that you want to store your project in?").execute()
+    GH_USERNAME = inq.prompt([inq.Text("name", message="What's your GitHub username?")]).get("name")  # type: ignore
+    REPO_NAME = inq.prompt(
+        [
+            inq.Text(
+                "repo",
+                message="What's the name of the repo that you want to store your repo builder in? (contents will be overwritten)",
+            )
+        ]
+    ).get("repo")  # type: ignore
+    print(REPO_NAME, GH_USERNAME)
+
+    # Make type checker stop complaining
+    assert REPO_NAME is not None
+    assert GH_USERNAME is not None
+
+    print(GH_USERNAME, REPO_NAME)
 
 
 def _check_repo_exists(owner: str, repo_name: str) -> bool:
@@ -58,14 +72,18 @@ def change_permission(func, path, _):
 
 
 def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_name: str):
+    # Satisfy type checker
+    assert isinstance(REPO_NAME, str)
+    assert isinstance(GH_USERNAME, str)
+
     if _check_repo_exists(GH_USERNAME, REPO_NAME):
         print("Repo exists! Clone it!")
 
         if os.path.exists(REPO_NAME):
-            overwrite = inquirer.confirm(
-                f"Do you want to overwrite the current directory named {REPO_NAME}?",
-                default=True,
-            ).execute()
+            overwrite = inq.prompt(
+                [inq.Confirm("ans", message=f"Do you want to overwrite the current directory named {REPO_NAME}?")]
+            ).get("ans")  # type: ignore
+
             if not overwrite:
                 print("Aborted.")
                 quit()
@@ -80,7 +98,10 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
         print("Creating repository...")
 
         if os.path.exists(REPO_NAME):
-            overwrite = inquirer.confirm(f"Do you want to overwrite the current directory named {REPO_NAME}?").execute()
+            overwrite = inq.prompt(
+                [inq.Confirm("ans", message=f"Do you want to overwrite the current directory named {REPO_NAME}?")]
+            ).get("ans")  # type: ignore
+
             if not overwrite:
                 print("Aborted.")
                 quit()
@@ -93,7 +114,10 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
     _create_yml(xcproj_link, project_name)
     _push_changes_to_repo()
 
-    inquirer.confirm("Building the repo! Press CTRL+C to cancel", default=True).execute()
+    inq.prompt(
+        [inq.Confirm("ans", message=f"Building the repo! Press CTRL+C to cancel")], raise_keyboard_interrupt=True
+    ).get("ans")  # type: ignore
+
     os.system(f'gh workflow run "Build iOS app" --repo {GH_USERNAME}/{REPO_NAME}')
     print(
         f"Check out your build at https://github.com/{GH_USERNAME}/{REPO_NAME}/actions and then click the topmost entry. Then scroll down to artifacts, and click the download icon next to your app."
