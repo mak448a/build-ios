@@ -10,3 +10,10 @@ Before submitting a pull request, make sure to lint and format your code. If you
 ruff format
 ruff check
 ```
+
+## Maintenance
+
+```shell
+uv lock --upgrade
+uv sync
+```
