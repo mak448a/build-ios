@@ -15,7 +15,7 @@ Features:
 
 ## Requirements
 - GitHub CLI (2.63.2 tested, other versions untested.)
-- git
+- git (2.50.1 tested)
 - Python (3.12+)
 
 ## Installation and Configuration
