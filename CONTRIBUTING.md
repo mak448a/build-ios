@@ -13,7 +13,11 @@ ruff check
 
 ## Maintenance
 
+Go into `requirements.txt` and update the dependencies if compatible.
+Then run this.
+
 ```shell
+uv add -r requirements.txt
 uv lock --upgrade
 uv sync
 ```
