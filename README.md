@@ -20,10 +20,10 @@ Features:
 
 ## Installation and Configuration
 1. First, download [Python](Python.org/downloads), Git, and GitHub. Make sure to check the box that says "Add to PATH" when installing Python if you're on Windows. Run this command if you want to install Git and GitHub on Windows: `winget install Git.Git GitHub.cli`, then log into GitHub with `gh auth login`.
-3. Go to the path where you downloaded this repository. 
+2. Go to the path where you downloaded this repository. 
    - For Windows, go to the folder and press on the address bar. Then, type in cmd and press enter.
    - For Linux, type `cd` and then the path you want in your terminal.
-4. Install dependencies with the commands below. Choose the one for your operating system.
+3. Install dependencies with the commands below. Choose the one for your operating system.
 
 **Windows**
 ```shell
@@ -48,7 +48,7 @@ You can name your app whatever you want, as long as it's unique.
 ![Screenshot of submit button](tutorial/6.png)
 5. Create the file `.env` and add `TOKEN=YOURKEYHERE` (replace the token with your token) to it.
 
-7. Run the Python script!
+6. Run the Python script!
 ```shell
 python main.py
 ```
