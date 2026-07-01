@@ -59,6 +59,8 @@ When you launch the CLI with `python main.py`, it'll prompt you to choose whethe
 
 If you want to save your answers, you can edit `.env` with your DropBox token, GitHub username, repository name, and output file.
 
+When the program asks you for a path, you can drag in a file into the terminal window.
+
 ### Mode instructions
 **Build IPA:**
 - Follow the prompts.
@@ -79,6 +81,9 @@ If you still have problems, check [the other troubleshooting thread](https://git
 While you're waiting, try following the [original instructions](https://github.com/mak448a/build-ios/tree/main/original_repo).
 ### Invalid files
 Did you add double quotes around the file path?
+
+## Edit IPA not working
+Did you place your pck file in the same directory as your ipa file?
 
 
 ## Privacy Policy
