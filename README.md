@@ -10,7 +10,7 @@ Features:
 
 
 > [!NOTE]
-> [My blog post](https://mak448a.github.io/blog/compile-ios-godot-without-mac) may have more up-to-date instructions!
+> My [blog post](https://mak448a.github.io/blog/compile-ios-godot-without-mac) may have more up-to-date instructions!
 
 > [!WARNING]
 > I try my best to write code that works, but I may have accidentally included bugs. Please report any that you find and please be cautious!
