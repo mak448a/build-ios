@@ -37,6 +37,7 @@ def _check_repo_exists(owner: str, repo_name: str) -> bool:
             ["gh", "repo", "view", f"{owner}/{repo_name}"],
             capture_output=True,
             text=True,
+            check=True
         )
         if result.stdout:
             return True
