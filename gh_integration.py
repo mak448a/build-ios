@@ -110,7 +110,7 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
             print(f"Deleting {REPO_NAME} folder and creating {GH_USERNAME}/{REPO_NAME}!")
             shutil.rmtree(REPO_NAME)
 
-        subprocess.run(["gh", "repo", "create", REPO_NAME, "--private", "--clone"])
+        subprocess.run(["gh", "repo", "create", REPO_NAME, "--private", "--clone"], check=True)
 
     _create_yml(xcproj_link, project_name)
     _push_changes_to_repo()
