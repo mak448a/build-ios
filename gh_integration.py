@@ -34,15 +34,12 @@ if not GH_USERNAME or not REPO_NAME:
 def _check_repo_exists(owner: str, repo_name: str) -> bool:
     try:
         result = subprocess.run(
-            ["gh", "repo", "view", f"{owner}/{repo_name}"],
-            capture_output=True,
-            text=True,
-            check=True
+            ["gh", "repo", "view", f"{owner}/{repo_name}"], capture_output=True, text=True, check=True
         )
-        if result.stdout:
-            return True
-        else:
-            return False
+        # The command will throw errors, so this is safe
+        # Only have this because ruff wants it. I would've used 'return True'
+        # since it was successful
+        return bool(result.stdout)
     except subprocess.CalledProcessError:
         return False
 
